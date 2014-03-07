@@ -157,7 +157,7 @@
 
   <servlet-mapping>
     <servlet-name>default</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/sgfinans24</url-pattern>
   </servlet-mapping>
 
   <!-- ==================================================================== -->
