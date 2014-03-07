@@ -21,7 +21,7 @@ public class JettyWarMain {
         }
 
         WebAppContext webapp = new WebAppContext();
-        webapp.setContextPath("/wtf");
+				webapp.setContextPath(System.getProperty("jetty.contextpath", "/"));
         webapp.setExtractWAR(true);
         webapp.setWar(args[0]);
         webapp.setDefaultsDescriptor(webdefaultPath());
