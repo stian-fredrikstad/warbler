@@ -103,7 +103,13 @@ PROPS
 
 		def add(jar)
 			super
-			JettyServer.add(jar)
+			jar.files["WEB-INF/webserver.properties"] = StringIO.new(<<-PROPS)
+mainclass = JettyWarMain
+args = args0
+props = jetty.home
+args0 = {{warfile}}
+jetty.home = {{webroot}}
+			PROPS
 		end
 	end
 
