@@ -98,7 +98,7 @@ PROPS
 
 	class LocalJettyServer < WebServer
 		def initialize
-			@artifact = LocalArtifact.new("C:/Users/Stian Fredrikstad/Documents/GitHub/foo/lib/webserver.jar")
+			@artifact = LocalArtifact.new("lib/webserver.jar")
 		end
 
 		def add(jar)
