@@ -37,7 +37,7 @@ module Warbler
 
 		class LocalArtifact < Struct.new(:path)
 			def local_path
-				File.new(path)
+				File.expand_path(path)
 			end
 		end
 
