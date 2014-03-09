@@ -35,12 +35,6 @@ module Warbler
       end
 		end
 
-		class LocalArtifact < Struct.new(:path)
-			def local_path
-				File.expand_path(path)
-			end
-		end
-
     def add(jar)
       jar.files["WEB-INF/webserver.jar"] = @artifact.local_path
     end
@@ -98,11 +92,9 @@ PROPS
 
 	class LocalJettyServer < WebServer
 		def initialize
-			@artifact = LocalArtifact.new("lib/webserver.jar")
 		end
 
 		def add(jar)
-			super
 			jar.files["WEB-INF/webserver.properties"] = StringIO.new(<<-PROPS)
 mainclass = JettyWarMain
 args = args0
