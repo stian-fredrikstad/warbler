@@ -33,7 +33,13 @@ module Warbler
         end
         cached_path
       end
-    end
+		end
+
+		class LocalArtifact < Struct.new(:path)
+			def local_path
+				File.new(path)
+			end
+		end
 
     def add(jar)
       jar.files["WEB-INF/webserver.jar"] = @artifact.local_path
@@ -90,9 +96,21 @@ PROPS
     end
   end
 
+	class LocalJettyServer < WebServer
+		def initialize
+			@artifact = LocalArtifact.new("lib/webserver.jar")
+		end
+
+		def add(jar)
+			super
+			JettyServer.add(jar)
+		end
+	end
+
   WEB_SERVERS = Hash.new {|h,k| h["jenkins-ci.winstone"] }
   WEB_SERVERS.update({ "winstone" => WinstoneServer.new,
                        "jenkins-ci.winstone" => JenkinsWinstoneServer.new,
-                       "jetty" => JettyServer.new
+                       "jetty" => JettyServer.new,
+											 "local-jetty" => LocalJettyServer.new
                      })
 end
