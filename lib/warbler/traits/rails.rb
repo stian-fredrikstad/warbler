@@ -21,7 +21,6 @@ module Warbler
 
       def before_configure
         config.jar_name = default_app_name
-        config.webxml.rails.env = ENV['RAILS_ENV'] || 'production'
 
         return unless Warbler.framework_detection
         return false unless task = Warbler.project_application.lookup("environment")
@@ -59,7 +58,7 @@ module Warbler
       end
 
       def threadsafe_enabled?
-        rails_env = config.webxml.rails.env
+        rails_env = ENV['RAILS_ENV'] || 'production'
         begin
           unless IO.readlines("config/environments/#{rails_env}.rb").grep(/^\s*config\.threadsafe!/).empty? &&
               IO.readlines("config/environment.rb").grep(/^\s*config\.threadsafe!/).empty?
