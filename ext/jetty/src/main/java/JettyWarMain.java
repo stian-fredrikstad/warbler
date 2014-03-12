@@ -22,7 +22,8 @@ public class JettyWarMain {
         }
 
         WebAppContext webapp = new WebAppContext();
-				webapp.setContextPath(System.getProperty("jetty.contextpath", "/"));
+				webapp.setContextPath(System.getProperty("jetty.contextPath", "/"));
+				webapp.setInitParameter("rails.env", System.getProperty("rails_env", "development"));
         webapp.setExtractWAR(true);
         webapp.setWar(args[0]);
         webapp.setDefaultsDescriptor(webdefaultPath());
