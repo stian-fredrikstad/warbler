@@ -58,7 +58,7 @@ module Warbler
       end
 
       def threadsafe_enabled?
-        rails_env = ENV['RAILS_ENV'] || 'production'
+        rails_env = ENV['RAILS_ENV'] || 'development'
         begin
           unless IO.readlines("config/environments/#{rails_env}.rb").grep(/^\s*config\.threadsafe!/).empty? &&
               IO.readlines("config/environment.rb").grep(/^\s*config\.threadsafe!/).empty?
